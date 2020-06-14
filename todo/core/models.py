@@ -6,7 +6,7 @@ class Todo(models.Model):
     description = models.CharField(max_length=300)
     done = models.BooleanField(default=False)
     created_by = models.ForeignKey('auth.User', related_name='todos', on_delete = models.CASCADE, editable=False)
-    created_at = models.DateTimeField(editable=False)
+    created_at = models.DateTimeField(editable=False, blank=True)
 
     # Manually insert date on save - https://stackoverflow.com/a/1737078/6566006
     def save(self, *args, **kwargs):

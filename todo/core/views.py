@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.db.models import get_object_or_404
 
 from rest_framework import viewsets, generics
 from rest_framework.permissions import BasePermission, IsAuthenticated, AllowAny
@@ -24,7 +23,16 @@ class TodoViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return Todo.objects.filter(created_by=self.request.user)
 
+    def perform_create(self, serializer):
+        serializer.save(created_by=self.request.user)
+
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated, IsAuthorized]
+
+class UserCreate(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
