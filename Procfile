@@ -1,1 +1,1 @@
-web: gunicorn todo.wsgi
+cd todo && gunicorn todo.wsgi
