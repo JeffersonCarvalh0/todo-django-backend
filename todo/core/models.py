@@ -8,6 +8,9 @@ class Todo(models.Model):
     created_by = models.ForeignKey('auth.User', related_name='todos', on_delete = models.CASCADE, editable=False)
     created_at = models.DateTimeField(editable=False, blank=True)
 
+    class Meta:
+        ordering = ['created_at']
+
     # Manually insert date on save - https://stackoverflow.com/a/1737078/6566006
     def save(self, *args, **kwargs):
         if not self.id:
