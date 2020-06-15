@@ -12,6 +12,8 @@ djangorestframework-simplejwt = "*"
 django-rest-auth = "*"
 django-rest-swagger = "*"
 drf-yasg = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.6"
