@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 
 from rest_framework import viewsets, generics
 from rest_framework.permissions import BasePermission, IsAuthenticated, AllowAny
@@ -30,6 +31,11 @@ class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated, IsAuthorized]
+
+    def get_object(self):
+        user = get_object_or_404(User, pk=self.request.user.id)
+        self.check_object_permissions(self.request, user)
+        return user
 
 class UserCreate(generics.CreateAPIView):
     queryset = User.objects.all()
