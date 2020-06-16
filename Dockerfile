@@ -1,3 +1,3 @@
 FROM python:3.6
-COPY . ./code
-RUN pip install -r code/requirements.txt
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt

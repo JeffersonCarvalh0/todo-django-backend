@@ -1,7 +1,27 @@
 version: '3'
 services:
   web:
+    tty: true
     build: .
-    command: python code/todo/manage.py runserver 0.0.0.0:8000
+    command: python todo/manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
+    volumes:
+      - ./todo:/todo
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:12.2
+    environment:
+      POSTGRES_USER: todo
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: todo-database
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+

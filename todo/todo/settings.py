@@ -26,8 +26,7 @@ SECRET_KEY = 'qv%vlj!zag94_+6_7lqutjx#^p9k*1&a$%kf(igpvptq=tx4c2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -79,8 +78,12 @@ WSGI_APPLICATION = 'todo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'todo-database',
+        'USER': 'todo',
+        'PASSWORD': 'password',
+        'HOST': 'postgres',
+        'PORT': '5432',
     }
 }
 

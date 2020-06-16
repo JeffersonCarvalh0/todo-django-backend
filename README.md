@@ -5,6 +5,8 @@ A django restful API that performs CRUD operations on Todos with authentication.
 # Building
 ## Using `docker-compose`
 Simply run `docker-compose up` or `docker-compose up -d` from root and wait until it starts.
+If it is the first time you are running it, make the migrations by running
+`docker-compose exec web python todo/manage.py migrate` while the container is up.
 
 ## Building it manually
 `pipenv` must be installed. Run `pipenv install` from root to install all dependencies.
